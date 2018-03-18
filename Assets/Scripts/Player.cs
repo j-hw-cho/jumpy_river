@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public Arrow arrow;
+
 	private Animator playerAnimator;
 
 	private bool jumpReady;
@@ -10,6 +12,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void OnEnable () {
+
 		playerAnimator = this.gameObject.GetComponent<Animator>();
 		playerAnimator.SetBool("touch", false);
 		playerAnimator.SetBool("jump", false);
@@ -21,16 +24,20 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
-			playerAnimator.SetBool("touch", true);
-			jumpReady = true;
-			Debug.Log("READY");
-		}
+		if (!jumpReady && !isJumping) {
+			if (Input.GetMouseButtonDown(0)) {
+				playerAnimator.SetBool("touch", true);
+				jumpReady = true;
+				arrow.pauseArrow();
+				Debug.Log("READY");
 
+			}
+		}
 		if (jumpReady) {
 			if (Input.GetMouseButtonUp(0)) {
 				playerAnimator.SetBool("jump", true);
 				isJumping = true;
+				arrow.pauseBar();
 				Debug.Log("JUMP");
 			}
 		} 
@@ -42,6 +49,7 @@ public class Player : MonoBehaviour {
 				playerAnimator.SetBool("touch", false);
 				isJumping = false;
 				jumpReady = false;
+				arrow.enable();
 				Debug.Log("Animation Finished");
 
 			}

@@ -16,6 +16,7 @@ public class Arrow : MonoBehaviour {
 	public GameObject powerSlider;
 	bool isPowerBarEnabled;
 	bool addPower;
+	bool stopPower;
 
 	float scaleUnit;
 
@@ -36,6 +37,7 @@ public class Arrow : MonoBehaviour {
 		powerBar.SetActive(false);
 		isPowerBarEnabled = false;
 		addPower = true;
+		stopPower = false;
 		scaleUnit = 2;
 	}
 
@@ -59,7 +61,8 @@ public class Arrow : MonoBehaviour {
 			curAngle = newAngle;
 		}
 
-		if (isPowerBarEnabled) {
+		if (isPowerBarEnabled && !stopPower) {
+			
 			Vector3 sliderScale = powerSlider.transform.localScale;
 			Vector3 newScale = Vector3.zero;
 			if (addPower) {
@@ -78,7 +81,7 @@ public class Arrow : MonoBehaviour {
 		}
 	}
 
-	void disable() {
+	public void disable() {
 		arrowMR.enabled = false;
 		isPowerBarEnabled = false;
 		powerBar.SetActive(false);
@@ -87,18 +90,34 @@ public class Arrow : MonoBehaviour {
 	}
 
 
-	void enable() {
+	public void enable() {
+		this.transform.eulerAngles = new Vector3(0, 0, 0);
 		arrowMR.enabled = true;
-		this.transform.eulerAngles = Vector3.zero;
+		pause = false;
 		isEnabled = true;
 
 	}
 
-	void pauseArrow() {
+	public void pauseArrow() {
 		pause = true;
 		powerBar.SetActive(true);
+		stopPower = false;
+		Vector3 sc = powerSlider.transform.localScale;
+		powerSlider.transform.localScale = new Vector3(sc.x, sc.y, 0.01f);
+		addPower = true;
 		isPowerBarEnabled = true;
 	}
 
+	public void pauseBar() {
+		stopPower = true;
 
+		IEnumerator coroutine = waitAndDisable();
+		StartCoroutine(coroutine);
+	}
+
+	IEnumerator waitAndDisable() {
+		yield return new WaitForSeconds(0.2f);
+
+		disable();
+	}
 }
