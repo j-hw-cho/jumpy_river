@@ -120,4 +120,23 @@ public class Arrow : MonoBehaviour {
 
 		disable();
 	}
+
+	/*
+	 * Returns the angle of arrow 
+	 * in radians 
+	 */ 
+	public float returnForceAngle() {
+		//float XForce = curAngle.x * 180 / Mathf.PI;
+		float XForce = curAngle.x;
+		XForce = XForce < 0 ? XForce + 90f : XForce;
+		return XForce * 180 / Mathf.PI;
+	}
+
+	/* 
+	 * Returns force amount 
+	 */
+	public float returnForceAmt() {
+		Vector3 sliderScale = powerSlider.transform.localScale;
+		return sliderScale.z * 100f;
+	}
 }

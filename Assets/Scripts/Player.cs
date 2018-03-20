@@ -7,18 +7,24 @@ public class Player : MonoBehaviour {
 
 	private Animator playerAnimator;
 
+	private Rigidbody playerRB;
+
 	private bool jumpReady;
 	private bool isJumping;
 
+	public float unit;
+
 	// Use this for initialization
 	void OnEnable () {
-
+		playerRB = this.gameObject.GetComponent<Rigidbody>();
 		playerAnimator = this.gameObject.GetComponent<Animator>();
 		playerAnimator.SetBool("touch", false);
 		playerAnimator.SetBool("jump", false);
 
 		jumpReady = false;
 		isJumping = false;
+
+		unit = 20f;
 
 	}
 	
@@ -38,6 +44,20 @@ public class Player : MonoBehaviour {
 				playerAnimator.SetBool("jump", true);
 				isJumping = true;
 				arrow.pauseBar();
+
+				/* calculate power and add player motion */
+				float rad = arrow.returnForceAngle();
+				float tan = Mathf.Tan(rad);
+				float power = arrow.returnForceAmt();
+
+				float forceZ = power* unit;
+				float forceY = tan * forceZ;
+
+				Vector3 newForce = new Vector3(0, forceY, forceZ);
+				Debug.Log("newForce: " + newForce.ToString());
+				playerRB.AddForce(newForce);
+
+
 				Debug.Log("JUMP");
 			}
 		} 
