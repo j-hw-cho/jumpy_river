@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 		jumpReady = false;
 		isJumping = false;
 
-		unit = 20f;
+		unit = 2000f;
 
 	}
 	
@@ -48,7 +48,10 @@ public class Player : MonoBehaviour {
 				/* calculate power and add player motion */
 				float rad = arrow.returnForceAngle();
 				float tan = Mathf.Tan(rad);
+				Debug.Log("Tan: " + tan.ToString());
 				float power = arrow.returnForceAmt();
+
+				Debug.Log("rad = " + rad.ToString() + " power: " +  power.ToString());
 
 				float forceZ = power* unit;
 				float forceY = tan * forceZ;

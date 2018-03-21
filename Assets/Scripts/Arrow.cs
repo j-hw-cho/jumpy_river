@@ -128,8 +128,10 @@ public class Arrow : MonoBehaviour {
 	public float returnForceAngle() {
 		//float XForce = curAngle.x * 180 / Mathf.PI;
 		float XForce = curAngle.x;
-		XForce = XForce < 0 ? XForce + 90f : XForce;
-		return XForce * 180 / Mathf.PI;
+
+		XForce = XForce < 0 ? XForce * -1 : XForce;
+		Debug.Log("Angle: " + XForce);
+		return XForce *  Mathf.PI / 180f;
 	}
 
 	/* 
@@ -137,6 +139,7 @@ public class Arrow : MonoBehaviour {
 	 */
 	public float returnForceAmt() {
 		Vector3 sliderScale = powerSlider.transform.localScale;
-		return sliderScale.z * 100f;
+		Debug.Log("Power: " + sliderScale.x.ToString());
+		return sliderScale.z;
 	}
 }
