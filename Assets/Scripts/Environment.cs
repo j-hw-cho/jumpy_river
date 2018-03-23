@@ -35,13 +35,13 @@ public class Environment : MonoBehaviour {
 		lastDolPos = Vector3.zero;
 		playerPos = 0;
 
+		nextDolId = 1;
 
 		// first, generate 3 dols 
 		for (int i = 0; i < 3; i++) {
 			GenerateDol (0);
 		}
 
-		nextDolId = 0;
 	}
 	
 	// Update is called once per frame
@@ -94,6 +94,26 @@ public class Environment : MonoBehaviour {
 
 		Destroy(doneDol);
 
+	}
+
+
+	public void UpdatePlayerPos(int dolId) {
+		if (playerPos != dolId) {
+			player.landOnDol();
+			playerPos = dolId;
+			// Generate New Dol
+			if (playerPos <= 20) {
+				GenerateDol(0);
+			} else {
+				// Todo: after first 20 dols, generate wood and moving dol randomly
+				GenerateDol(0);
+			}
+
+			// Delete oldest dol if needed
+			if (playerPos >= 3) {
+				DestroyDol();
+			}
+		}
 	}
 
 

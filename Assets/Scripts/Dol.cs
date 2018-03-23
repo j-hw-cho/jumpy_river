@@ -43,4 +43,16 @@ public class Dol : MonoBehaviour {
 
 		isPlus = true;
 	}
+
+	public void OnCollisionEnter(Collision col) {
+		if (col.gameObject.tag == "Player") {
+			//Debug.Log("[Dol " + dolId + "] PLAYER CONTACTED");
+			if (col.collider.GetType() == typeof(BoxCollider)) {
+				Debug.Log("Player Landed on dol " + dolId.ToString());
+				GameObject.Find("water").GetComponent<Environment>().UpdatePlayerPos(dolId);
+
+			}
+		}
+
+	}
 }

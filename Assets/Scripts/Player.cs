@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public GameObject cam;	// Camera Object
+	public GameObject water;
+	private Vector3 cameraInitPos;
+	private Vector3 cameraPrevPos;
+	private Vector3 waterInitPos;
+	private Vector3 waterPrevPos;
+	private Vector3 playerPrevPos;
+
 	public bool active;
 	public Arrow arrow;
 
@@ -27,6 +35,16 @@ public class Player : MonoBehaviour {
 
 		unit = 2500f;
 		active = true;
+
+		playerPrevPos = this.gameObject.transform.position;
+
+		cameraInitPos =  new Vector3(7.24f, 2.19f, 3.09f);
+		cam.transform.position = cameraInitPos;
+		cameraPrevPos = cameraInitPos;
+
+		waterInitPos = new Vector3(0, -2f, 27f);
+		water.transform.position = waterInitPos;
+		waterPrevPos = waterInitPos;
 
 	}
 	
@@ -69,18 +87,33 @@ public class Player : MonoBehaviour {
 			} 
 
 			if (isJumping) {
+
 				if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("basic")) {
 					// Jump animation finished
 					playerAnimator.SetBool("jump", false);
 					playerAnimator.SetBool("touch", false);
 					isJumping = false;
 					jumpReady = false;
-					arrow.enable();
+					//arrow.enable();
 					Debug.Log("Animation Finished");
 
 				}
 			}
+
+			Vector3 pCurPos = this.gameObject.transform.position;
+			float zDiff = pCurPos.z - playerPrevPos.z;
+			cam.transform.position = new Vector3(cameraPrevPos.x, cameraPrevPos.y, cameraPrevPos.z + zDiff);
+			cameraPrevPos = cam.transform.position;
+			water.transform.position = new Vector3(waterPrevPos.x, waterPrevPos.y, waterPrevPos.z + zDiff);
+			waterPrevPos = water.transform.position;
+			playerPrevPos = pCurPos;
 		}
 
+	}
+
+
+	public void landOnDol() {
+		
+		arrow.enable();
 	}
 }
