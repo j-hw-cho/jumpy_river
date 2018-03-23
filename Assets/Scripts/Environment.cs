@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Environment : MonoBehaviour {
+	public UI ui;
+	public Player player;
+
 	public GameObject dolPf;	// Dol prefab
 	public GameObject woodPf;	// Wood prefab (sinking dol)
 	public GameObject moveDolPf;	// Moving Dol prefab
+
+	private int nextDolId;
 
 	private List<GameObject> dols;
 
@@ -16,8 +21,15 @@ public class Environment : MonoBehaviour {
 
 	private const float dolY = -1.5f;
 
+	public enum dolType {
+		dol,
+		wood, 
+		movedol
+	};
+
 	// Use this for initialization
 	void OnEnable () {
+		ui = GameObject.Find("Canvas").GetComponent<UI>();
 		dols = new List<GameObject>();
 		dolCount = 0;
 		lastDolPos = Vector3.zero;
@@ -28,6 +40,8 @@ public class Environment : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			GenerateDol (0);
 		}
+
+		nextDolId = 0;
 	}
 	
 	// Update is called once per frame
@@ -63,6 +77,8 @@ public class Environment : MonoBehaviour {
 			}
 			dols.Add(newDol);
 			lastDolPos = newDol.transform.position;
+			newDol.GetComponent<Dol>().initialize(nextDolId);
+			nextDolId++;
 			dolCount++;
 		}
 	}
@@ -78,5 +94,14 @@ public class Environment : MonoBehaviour {
 
 		Destroy(doneDol);
 
+	}
+
+
+	void OnTriggerEnter(Collider col) {
+		if (col.gameObject.tag == "Player") {
+			Debug.Log("Player sinked!");
+			player.active = false;
+			ui.GameOver();
+		}
 	}
 }

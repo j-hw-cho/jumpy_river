@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public bool active;
 	public Arrow arrow;
 
 	private Animator playerAnimator;
@@ -24,57 +25,60 @@ public class Player : MonoBehaviour {
 		jumpReady = false;
 		isJumping = false;
 
-		unit = 2000f;
+		unit = 2500f;
+		active = true;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!jumpReady && !isJumping) {
-			if (Input.GetMouseButtonDown(0)) {
-				playerAnimator.SetBool("touch", true);
-				jumpReady = true;
-				arrow.pauseArrow();
-				Debug.Log("READY");
+		if (active) {
+			if (!jumpReady && !isJumping) {
+				if (Input.GetMouseButtonDown(0)) {
+					playerAnimator.SetBool("touch", true);
+					jumpReady = true;
+					arrow.pauseArrow();
+					Debug.Log("READY");
 
+				}
 			}
-		}
-		if (jumpReady) {
-			if (Input.GetMouseButtonUp(0)) {
-				playerAnimator.SetBool("jump", true);
-				isJumping = true;
-				arrow.pauseBar();
+			if (jumpReady) {
+				if (Input.GetMouseButtonUp(0)) {
+					playerAnimator.SetBool("jump", true);
+					isJumping = true;
+					arrow.pauseBar();
 
-				/* calculate power and add player motion */
-				float rad = arrow.returnForceAngle();
-				float tan = Mathf.Tan(rad);
-				Debug.Log("Tan: " + tan.ToString());
-				float power = arrow.returnForceAmt();
+					/* calculate power and add player motion */
+					float rad = arrow.returnForceAngle();
+					float tan = Mathf.Tan(rad);
+					Debug.Log("Tan: " + tan.ToString());
+					float power = arrow.returnForceAmt();
 
-				Debug.Log("rad = " + rad.ToString() + " power: " +  power.ToString());
+					Debug.Log("rad = " + rad.ToString() + " power: " +  power.ToString());
 
-				float forceZ = power* unit;
-				float forceY = tan * forceZ;
+					float forceZ = power* unit;
+					float forceY = tan * forceZ;
 
-				Vector3 newForce = new Vector3(0, forceY, forceZ);
-				Debug.Log("newForce: " + newForce.ToString());
-				playerRB.AddForce(newForce);
+					Vector3 newForce = new Vector3(0, forceY, forceZ);
+					Debug.Log("newForce: " + newForce.ToString());
+					playerRB.AddForce(newForce);
 
 
-				Debug.Log("JUMP");
-			}
-		} 
+					Debug.Log("JUMP");
+				}
+			} 
 
-		if (isJumping) {
-			if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("basic")) {
-				// Jump animation finished
-				playerAnimator.SetBool("jump", false);
-				playerAnimator.SetBool("touch", false);
-				isJumping = false;
-				jumpReady = false;
-				arrow.enable();
-				Debug.Log("Animation Finished");
+			if (isJumping) {
+				if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("basic")) {
+					// Jump animation finished
+					playerAnimator.SetBool("jump", false);
+					playerAnimator.SetBool("touch", false);
+					isJumping = false;
+					jumpReady = false;
+					arrow.enable();
+					Debug.Log("Animation Finished");
 
+				}
 			}
 		}
 
