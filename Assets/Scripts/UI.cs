@@ -6,8 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
 	public GameObject ggPanel;
+	public GameObject gamePanel;
+	public Text scoreTxt;
+
+
+	public void OnEnable() {
+		gamePanel.SetActive(true);
+		ggPanel.SetActive(false);
+		scoreTxt.text = "0";
+
+	}
 
 	public void GameOver() {
+		gamePanel.SetActive(false);
 		ggPanel.SetActive(true);
 	}
 	
@@ -17,5 +28,10 @@ public class UI : MonoBehaviour {
 		SceneManager.LoadScene(curScene.buildIndex);
 
 	
+	}
+
+	public void updateScore(int score) {
+		scoreTxt.text = score.ToString();
+
 	}
 }

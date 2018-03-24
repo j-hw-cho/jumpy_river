@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Environment : MonoBehaviour {
+	public int score;
 	public UI ui;
 	public Player player;
 
@@ -29,6 +30,7 @@ public class Environment : MonoBehaviour {
 
 	// Use this for initialization
 	void OnEnable () {
+		score = 0;
 		ui = GameObject.Find("Canvas").GetComponent<UI>();
 		dols = new List<GameObject>();
 		dolCount = 0;
@@ -100,7 +102,18 @@ public class Environment : MonoBehaviour {
 	public void UpdatePlayerPos(int dolId) {
 		if (playerPos != dolId) {
 			player.landOnDol();
+
+			// Score calculation
+			int dolDiff = dolId - playerPos;
+			if (dolDiff == 1) {
+				score += 10;
+			} else {
+				int scoreAdd = 10 * dolDiff * 2;
+				score += scoreAdd;
+			}
+
 			playerPos = dolId;
+			ui.updateScore(score);
 			// Generate New Dol
 			if (playerPos <= 20) {
 				GenerateDol(0);

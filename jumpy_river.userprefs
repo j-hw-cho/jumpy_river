@@ -1,16 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dol.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Arrow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment.cs" Line="23" Column="4" />
-      <File FileName="Assets\Scripts\Dol.cs" Line="44" Column="17" />
+      <File FileName="Assets\Scripts\Player.cs" Line="96" Column="24" />
+      <File FileName="Assets\Scripts\Arrow.cs" Line="132" Column="1" />
+      <File FileName="Assets\Scripts\Environment.cs" Line="104" Column="17" />
+      <File FileName="Assets\Scripts\Dol.cs" Line="37" Column="8" />
+      <File FileName="Assets\Scripts\UI.cs" Line="16" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Arrow.cs" line="131" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="92" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="57" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="102" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
