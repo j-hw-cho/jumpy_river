@@ -41,7 +41,7 @@ public class Environment : MonoBehaviour {
 
 		// first, generate 3 dols 
 		for (int i = 0; i < 3; i++) {
-			GenerateDol (0);
+			GenerateDol (2);	// For testing
 		}
 
 	}
@@ -115,11 +115,19 @@ public class Environment : MonoBehaviour {
 			playerPos = dolId;
 			ui.updateScore(score);
 			// Generate New Dol
-			if (playerPos <= 20) {
+			if (playerPos <= 10) {
 				GenerateDol(0);
-			} else {
+			
+			} else if (playerPos <= 20) {
 				// Todo: after first 20 dols, generate wood and moving dol randomly
-				GenerateDol(0);
+				int range = Random.Range(0,2);
+				Debug.Log("new Type == " + range);
+				GenerateDol(range);
+
+			} else {
+				int range = Random.Range(0,3);
+				Debug.Log("new Type == " + range);
+				GenerateDol(range);
 			}
 
 			// Delete oldest dol if needed
@@ -132,7 +140,7 @@ public class Environment : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Player") {
-			Debug.Log("Player sinked!");
+			//Debug.Log("Player sinked!");
 			player.active = false;
 			ui.GameOver();
 		}

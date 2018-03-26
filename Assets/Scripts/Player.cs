@@ -50,6 +50,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		/* TODO: move player along with movingdol if on */
 		if (active) {
 			if (!jumpReady && !isJumping) {
 				if (Input.GetMouseButtonDown(0)) {

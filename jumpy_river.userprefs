@@ -2,18 +2,19 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player.cs" Line="96" Column="24" />
-      <File FileName="Assets\Scripts\Arrow.cs" Line="132" Column="1" />
-      <File FileName="Assets\Scripts\Environment.cs" Line="104" Column="17" />
-      <File FileName="Assets\Scripts\Dol.cs" Line="37" Column="8" />
-      <File FileName="Assets\Scripts\UI.cs" Line="16" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="53" Column="53" />
+      <File FileName="Assets\Scripts\Environment.cs" Line="36" Column="16" />
+      <File FileName="Assets\Scripts\Arrow.cs" Line="14" Column="19" />
+      <File FileName="Assets\Scripts\Dol.cs" Line="28" Column="77" />
+      <File FileName="Assets\Scripts\UI.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="92" column="1" />
-      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="57" column="1" />
-      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="102" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="94" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="59" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Environment.cs" line="104" column="1" />
+      <Breakpoint file="C:\Users\hyeiwon\Documents\Game\jumpy_river\Assets\Scripts\Dol.cs" line="27" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
