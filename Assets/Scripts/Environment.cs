@@ -27,6 +27,8 @@ public class Environment : MonoBehaviour {
 	private const float dolY = -1.5f;
 
 
+	public AudioSource audio;
+	public AudioClip splashSound;
 
 	public enum dolType {
 		dol,
@@ -50,6 +52,8 @@ public class Environment : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			GenerateDol (0);	// For testing
 		}
+
+		audio = this.gameObject.GetComponent<AudioSource>();
 
 	}
 	
@@ -160,6 +164,7 @@ public class Environment : MonoBehaviour {
 				splash.transform.position = newPos;
 
 				isSplash = true;
+				audio.PlayOneShot(splashSound, 2f);
 
 			}
 

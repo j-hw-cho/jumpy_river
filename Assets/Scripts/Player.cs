@@ -23,6 +23,8 @@ public class Player : MonoBehaviour {
 
 	public float unit;
 
+	private AudioSource audio;
+
 	// Use this for initialization
 	void OnEnable () {
 		playerRB = this.gameObject.GetComponent<Rigidbody>();
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour {
 		water.transform.position = waterInitPos;
 		waterPrevPos = waterInitPos;
 
+		audio = this.gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -114,7 +117,7 @@ public class Player : MonoBehaviour {
 
 
 	public void landOnDol() {
-		
+		audio.Play();
 		arrow.enable();
 	}
 }
