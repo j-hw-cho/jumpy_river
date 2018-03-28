@@ -11,6 +11,10 @@ public class Environment : MonoBehaviour {
 	public GameObject woodPf;	// Wood prefab (sinking dol)
 	public GameObject moveDolPf;	// Moving Dol prefab
 
+	public GameObject splashCube;	// splashcube prefab
+
+	private bool isSplash;
+
 	private int nextDolId;
 
 	private List<GameObject> dols;
@@ -21,6 +25,8 @@ public class Environment : MonoBehaviour {
 	private int playerPos;
 
 	private const float dolY = -1.5f;
+
+
 
 	public enum dolType {
 		dol,
@@ -39,9 +45,10 @@ public class Environment : MonoBehaviour {
 
 		nextDolId = 1;
 
+		isSplash = false;
 		// first, generate 3 dols 
 		for (int i = 0; i < 3; i++) {
-			GenerateDol (2);	// For testing
+			GenerateDol (0);	// For testing
 		}
 
 	}
@@ -125,7 +132,8 @@ public class Environment : MonoBehaviour {
 				GenerateDol(range);
 
 			} else {
-				int range = Random.Range(0,3);
+				//int range = Random.Range(0,3);
+				int range = Random.Range(0,2);		// FOR NOW
 				Debug.Log("new Type == " + range);
 				GenerateDol(range);
 			}
@@ -142,6 +150,20 @@ public class Environment : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			//Debug.Log("Player sinked!");
 			player.active = false;
+
+			if (!isSplash) {
+				Vector3 playerPos = player.transform.position;
+				Vector3 splashPos = splashCube.transform.position;
+				Vector3 newPos = new Vector3(splashPos.x, splashPos.y, playerPos.z);
+
+				GameObject splash = (GameObject)Instantiate(splashCube);
+				splash.transform.position = newPos;
+
+				isSplash = true;
+
+			}
+
+
 			ui.GameOver();
 		}
 	}

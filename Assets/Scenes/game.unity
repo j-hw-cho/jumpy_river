@@ -392,6 +392,7 @@ MonoBehaviour:
   dolPf: {fileID: 1317990069458512, guid: 5e460afa98d69014c8f7668156dabf3e, type: 2}
   woodPf: {fileID: 1138136791904598, guid: 463c2c65c1117934884cef212a0dabda, type: 2}
   moveDolPf: {fileID: 1018411565298534, guid: 2d58bf56e441ef8489fad8b453fffed9, type: 2}
+  splashCube: {fileID: 1080906742331498, guid: a94bfc0992db87345ac8ba1b07f8caee, type: 2}
 --- !u!1 &478902327
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +900,7 @@ MonoBehaviour:
   dolPf: {fileID: 1317990069458512, guid: 5e460afa98d69014c8f7668156dabf3e, type: 2}
   woodPf: {fileID: 1138136791904598, guid: 463c2c65c1117934884cef212a0dabda, type: 2}
   moveDolPf: {fileID: 1018411565298534, guid: 2d58bf56e441ef8489fad8b453fffed9, type: 2}
+  splashCube: {fileID: 0}
 --- !u!1 &1236986837
 GameObject:
   m_ObjectHideFlags: 0
